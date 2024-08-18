@@ -11,10 +11,13 @@ import java.util.Map;
 
 @Configuration
 public class CloudinaryConfig {
-    private final Dotenv dotenv = Dotenv.load();
-    private final String cloudName = dotenv.get("cloudName");
-    private final String apiKey= dotenv.get("apiKey");
-    private final String apiSecret = dotenv.get("apiSecret");
+
+    @Value("${cloudName}")
+    private  String cloudName;
+    @Value("${apiKey}")
+    private String apiKey;
+    @Value("${apiSecret}")
+    private  String apiSecret;
 
     @Bean
     public Cloudinary cloudinary() {

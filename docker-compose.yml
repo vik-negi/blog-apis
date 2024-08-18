@@ -4,6 +4,14 @@ services:
     build: .
     ports:
       - "8080:8080"
-    restart: always
     env_file:
       - .env
+    environment:
+      - cloudName=${cloudName}
+      - apiKey=${apiKey}
+      - apiSecret=${apiSecret}
+      - DbUrl=${DbUrl}
+      - DbName=${DbName}
+      - DbPassword=${DbPassword}
+
+    restart: always
