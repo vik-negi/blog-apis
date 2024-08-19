@@ -54,13 +54,14 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@ModelAttribute @Valid RegisterUserDAO userData, BindingResult bindingResult){
         try{
+            logger.info("Register : " + userData.getFullName() + " " + userData.getUsername() + " " + userData.getEmail() + " " + userData.getPassword());
             MultipartFile imageFile = userData.getImage();
             User user = new User();
             user.setUsername(userData.getUsername());
             user.setFullName(userData.getFullName());
             user.setEmail(userData.getEmail());
             user.setBio(userData.getBio());
-            logger.info("Register : " + user.getFullName() + " " + user.getEmail() + " " + user.getEmail() + " " + user.getPassword());
+
             User savedUSer = authService.register(user);
             PasswordService passwordService = new PasswordService();
             String hasPassword = passwordService.hashPassword(userData.getPassword());
