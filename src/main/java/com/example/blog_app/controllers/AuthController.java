@@ -8,10 +8,13 @@ import com.example.blog_app.services.CloudinaryService;
 import com.example.blog_app.services.PasswordService;
 import com.example.blog_app.utils.security.JWTHelper;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
@@ -30,6 +33,7 @@ public class AuthController {
     @Autowired
     private JWTHelper jwtHelper;
 
+    private final Logger logger = LoggerFactory.getLogger(OncePerRequestFilter.class);
 
 
     @PostMapping("/login")
@@ -56,6 +60,7 @@ public class AuthController {
             user.setFullName(userData.getFullName());
             user.setEmail(userData.getEmail());
             user.setBio(userData.getBio());
+            logger.info("Register : " + user.getFullName() + " " + user.getEmail() + " " + user.getEmail() + " " + user.getPassword());
             User savedUSer = authService.register(user);
             PasswordService passwordService = new PasswordService();
             String hasPassword = passwordService.hashPassword(userData.getPassword());

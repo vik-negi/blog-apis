@@ -21,7 +21,6 @@ import java.util.List;
 @Setter
 @Table(name = "users")
 //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
 public class User {
 
     @Id
