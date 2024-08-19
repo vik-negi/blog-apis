@@ -15,7 +15,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("*")
 
-                        .allowedOrigins("https://socially-xi.vercel.app")
+                        .allowedOrigins("https://socially-xi.vercel.app", "http://localhost:3000")
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
